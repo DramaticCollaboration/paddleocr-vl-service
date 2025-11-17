@@ -57,3 +57,16 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paddleocr.rule=Host(`paddleocr.empasy.com`)"
+      - "traefik.http.routers.paddleocr.entrypoints=websecure"
+      - "traefik.http.routers.paddleocr.tls=true"
+      - "traefik.http.routers.paddleocr.tls.certresolver=myresolver"
+      - "traefik.http.routers.paddleocr.service=paddleocr"
+      - "traefik.http.services.paddleocr.loadbalancer.server.port=3000"
+      - "traefik.http.services.paddleocr.loadbalancer.server.scheme=http"
+
+networks:
+  proxy:
+    external: true # Or define it here if not already existing
