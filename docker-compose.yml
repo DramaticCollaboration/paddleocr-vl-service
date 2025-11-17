@@ -57,6 +57,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    networks:
+      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.paddleocr.rule=Host(`paddleocr.empasy.com`)"
